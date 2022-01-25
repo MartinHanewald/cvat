@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  cvat:
+    environment:
+      CVAT_SHARE_URL: 'GDrive'
+    volumes:
+      - cvat_share_2:/home/django/share:ro
+
+volumes:
+  cvat_share_2:
+    driver_opts:
+      type: none
+      device: /home/martin/GDrive
+      o: bind
