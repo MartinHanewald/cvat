@@ -29,6 +29,10 @@ backup:
 	docker run --rm --name temp_backup --volumes-from cvat -v $(pwd)/backup:/backup ubuntu tar -cjvf /backup/cvat_data.tar.bz2 /home/django/data
 	docker run --rm --name temp_backup --volumes-from cvat -v $(pwd)/backup:/backup ubuntu tar -cjvf /backup/cvat_keys.tar.bz2 /home/django/keys
 
+restore:
+	docker run --rm --name temp_backup --volumes-from cvat_db -v $(pwd)/backup:/backup ubuntu bash -c "cd /var/lib/postgresql/data && tar -xvf /backup/cvat_db.tar.bz2 --strip 4"
+	docker run --rm --name temp_backup --volumes-from cvat -v $(pwd)/backup:/backup ubuntu bash -c "cd /home/django/data && tar -xvf /backup/cvat_data.tar.bz2 --strip 3"
+	docker run --rm --name temp_backup --volumes-from cvat -v $(pwd)/backup:/backup ubuntu bash -c "cd /home/django/keys && tar -xvf /backup/cvat_keys.tar.bz2 --strip 3"
 
 
 
