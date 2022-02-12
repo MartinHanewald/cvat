@@ -23,6 +23,9 @@ down:
 	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml down
 	docker volume rm cvat_cvat_share_2
 
+stop:
+	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml stop
+
 # https://openvinotoolkit.github.io/cvat/docs/administration/advanced/backup_guide/
 backup:
 	docker run --rm --name temp_backup --volumes-from cvat_db -v $(pwd)/backup:/backup ubuntu tar -cjvf /backup/cvat_db.tar.bz2 /var/lib/postgresql/data
