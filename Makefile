@@ -37,7 +37,9 @@ restore:
 	docker run --rm --name temp_backup --volumes-from cvat -v $(pwd)/backup:/backup ubuntu bash -c "cd /home/django/data && tar -xvf /backup/cvat_data.tar.bz2 --strip 3"
 	docker run --rm --name temp_backup --volumes-from cvat -v $(pwd)/backup:/backup ubuntu bash -c "cd /home/django/keys && tar -xvf /backup/cvat_keys.tar.bz2 --strip 3"
 
-
-
+hrnet:
+	nuctl deploy --project-name cvat \
+		--path ./serverless/pytorch/saic-vul/hrnet/nuclio/ \
+		--platform local
 
 
