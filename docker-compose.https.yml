@@ -29,8 +29,8 @@ services:
       - "--certificatesResolvers.lets-encrypt.acme.tlsChallenge=true"
       - "--certificatesResolvers.lets-encrypt.acme.storage=/letsencrypt/acme.json"
       # Uncomment to get Traefik dashboard
-      # - "--entryPoints.dashboard.address=:8090"
-      # - "--api.dashboard=true"
+      - "--entryPoints.dashboard.address=:8090"
+      - "--api.dashboard=true"
     ports:
       - 80:80
       - 443:443

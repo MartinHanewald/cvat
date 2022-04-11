@@ -6,10 +6,12 @@ SHELL=/bin/bash
 DIR=$(shell pwd)
 ACME_EMAIL=martin@hanewald.ai
 CVAT_HOST=tg-annotation.hanewald.ai
+RESULTVIEWER_HOST=tg-resultviewer.hanewald.ai
 BACKUP_DIR=/home/martin/GDrive/cvat_backup/
 
 export ACME_EMAIL
 export CVAT_HOST
+export RESULTVIEWER_HOST
 
 # build docker image
 build:
@@ -17,15 +19,15 @@ build:
 
 # compose up
 up:
-	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml up -d
+	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml -f ../tg-poc-resultviewer/docker-compose.yml up -d
 
 # compose down
 down:
-	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml down
+	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml -f ../tg-poc-resultviewer/docker-compose.yml down
 	docker volume rm cvat_cvat_share_2
 
 stop:
-	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml stop
+	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml -f ../tg-poc-resultviewer/docker-compose.yml stop
 
 # https://openvinotoolkit.github.io/cvat/docs/administration/advanced/backup_guide/
 backup_files:
