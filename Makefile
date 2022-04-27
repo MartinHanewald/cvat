@@ -19,7 +19,7 @@ build:
 
 # compose up
 up:
-	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml -f ../tg-poc-resultviewer/docker-compose.yml up -d
+	docker-compose -f docker-compose.yml -f docker-compose.https.yml -f docker-compose.share.yml -f components/serverless/docker-compose.serverless.yml -f ../tg-poc-resultviewer/docker-compose.yml up -d --force-recreate
 
 # compose down
 down:
