@@ -49,3 +49,10 @@ backup: down backup_files up
 
 test:
 	echo $(BACKUP_DIR)
+
+manifest:
+	docker run -it -u root --entrypoint bash -v /home/martin/cvat/manifest:/tmp/manifest:rw -v /home/martin/GDrive:/home/django/share:ro cvat/server -c "pip3 install -r utils/dataset_manifest/requirements.txt && python3 utils/dataset_manifest/create.py --output-dir /tmp/manifest/ /home/django/share/consolidated/data"
+
+
+# add phony
+.PHONY: build up down backup_files restore_files backup test manifest
